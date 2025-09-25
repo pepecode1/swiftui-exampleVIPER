@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-@main
 struct swiftui_exampleVIPERApp: App {
+    /// Adaptador para conectar el AppDelegate de UIKit
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    /// Escena principal de la aplicación
     var body: some Scene {
         WindowGroup {
             ContentView()
