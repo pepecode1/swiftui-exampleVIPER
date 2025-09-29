@@ -23,6 +23,9 @@ struct UserDetailView: View {
                 .font(.body)
                 .foregroundColor(.blue)
             Spacer()
+			NavigationLink(destination: EditUserView(user: user)) {
+				Text("Modificar")
+			}
         }
         .padding()
     }
