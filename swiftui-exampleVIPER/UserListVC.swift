@@ -72,4 +72,24 @@ extension UserListVC: UITableViewDelegate {
         let user = users[indexPath.row]
         presenter?.didSelectUser(user)
     }
+	/// Maneja el deslizamiento de la tabla.
+	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		// Acción de deslizamiento para mostrar una vista o realizar una acción
+		let showViewAction = UIContextualAction(style: .normal, title: "Mostrar") { [weak self] (action, view, completionHandler) in
+			guard let self = self else { return }
+			self.presenter?.didEditUser(self.users[indexPath.row])
+			completionHandler(true)
+		}
+		
+		// Puedes agregar más acciones
+		let deleteAction = UIContextualAction(style: .destructive, title: "Eliminar") { (action, view, completionHandler) in
+			// Lógica para eliminar
+			completionHandler(true)
+		}
+		
+		// Configura las acciones de deslizamiento
+		let configuration = UISwipeActionsConfiguration(actions: [showViewAction, deleteAction])
+		configuration.performsFirstActionWithFullSwipe = false // Evita que la acción se ejecute con un deslizamiento completo
+		return configuration
+	}
 }

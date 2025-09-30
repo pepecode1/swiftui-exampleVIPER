@@ -13,6 +13,9 @@ protocol UserListRouterProtocol {
     /// Navega a la pantalla de detalles del usuario
     /// - Parameter user: Usuario seleccionado
     func navigateToUserDetail(user: User)
+	/// Navega a la pantalla de edición del usuario
+    /// - Parameter user: Usuario seleccionado
+    func navigateToUserEdit(user: User)
 }
 /// Router que maneja la creación del módulo y la navegación
 class UserListRouter: UserListRouterProtocol {
@@ -39,4 +42,11 @@ class UserListRouter: UserListRouterProtocol {
         let hostingController = UIHostingController(rootView: detailView)
         viewController?.navigationController?.pushViewController(hostingController, animated: true)
     }
+	/// Navega a la pantalla de edición en SwiftUI
+	/// - Parameter user: Usuario seleccionado
+	func navigateToUserEdit(user: User) {
+		let detailView = EditUserView(user: user)
+		let hostingController = UIHostingController(rootView: detailView)
+		viewController?.navigationController?.pushViewController(hostingController, animated: true)
+	}
 }

@@ -13,7 +13,6 @@ struct swiftui_exampleVIPERApp: App {
     /// Escena principal de la aplicación
     var body: some Scene {
         WindowGroup {
-            ContentView()
         }
     }
 }

@@ -11,10 +11,13 @@ protocol UserListPresenterProtocol {
     /// Maneja la selección de un usuario
     /// - Parameter user: Usuario seleccionado
     func didSelectUser(_ user: User)
+	/// Maneja la edición de un usuario
+	/// - Parameter user: Usuario seleccionado
+    func didEditUser(_ user: User)
 }
 /// Presenter que maneja la lógica de presentación para la lista de usuarios
 class UserListPresenter: UserListPresenterProtocol {
-    /// Referencia débil a la Vista
+	/// Referencia débil a la Vista
     weak var view: UserListViewProtocol?
     /// Referencia al Interactor
     var interactor: UserListInteractorProtocol?
@@ -28,7 +31,12 @@ class UserListPresenter: UserListPresenterProtocol {
     /// - Parameter user: Usuario seleccionado
     func didSelectUser(_ user: User) {
         router?.navigateToUserDetail(user: user)
-    }
+	}
+	/// Editar usuario.
+	/// - Parameter user: usuario.
+	func didEditUser(_ user: User) {
+		router?.navigateToUserEdit(user: user)
+	}
 }
 /// Implementación del protocolo para recibir datos del Interactor
 extension UserListPresenter: UserListInteractorOutputProtocol {
