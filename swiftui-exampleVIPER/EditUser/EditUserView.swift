@@ -8,13 +8,13 @@ import SwiftUI
 /// Vista para editar usuario.
 struct EditUserView: View {
 	/// ViewModel instance for managing user data
-	@StateObject private var viewModel: EditUserViewModel = EditUserViewModel()
-	/// Constructor
-	init(user: User) {
-		viewModel.setUser(user: user)
-	}
+	@StateObject private var viewModel: EditUserViewModel
 	/// Environment variable to dismiss the view
 	@Environment(\.dismiss) private var dismiss
+	/// Constructor
+	init(user: User) {
+		_viewModel = StateObject(wrappedValue: EditUserViewModel(user: user))
+	}
 	var body: some View {
 		NavigationView {
 			Form {

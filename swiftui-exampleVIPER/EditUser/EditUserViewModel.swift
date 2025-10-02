@@ -23,15 +23,12 @@ class EditUserViewModel: ObservableObject {
     /// Private data service for saving user data
     private let dataService: DataServiceProtocol
     /// Initialize with user and data service
-    init(dataService: DataServiceProtocol = DataService()) {
-        self.dataService = dataService
-    }
-	/// Asigna usuario.
-	func setUser(user: User) {
+    init(user: User, dataService: DataServiceProtocol = DataService()) {
 		self.id = user.id
 		self.name = user.name
 		self.email = user.email
-	}
+        self.dataService = dataService
+    }
     /// Validates and saves user data
     func saveUser() {
         guard !name.isEmpty, !email.isEmpty else {
